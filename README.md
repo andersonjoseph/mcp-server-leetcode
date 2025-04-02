@@ -3,41 +3,41 @@
 [![npm version](https://img.shields.io/npm/v/@mcpfun/mcp-server-leetcode.svg)](https://www.npmjs.com/package/@mcpfun/mcp-server-leetcode)
 [![license](https://img.shields.io/npm/l/@mcpfun/mcp-server-leetcode.svg)](https://github.com/doggybee/mcp-server-leetcode/blob/main/LICENSE)
 
-一个基于 Model Context Protocol (MCP) 的 LeetCode 服务器，让你的 AI 助手能够访问 LeetCode 的问题、用户信息和竞赛数据。
+A Model Context Protocol (MCP) server for LeetCode that enables AI assistants to access LeetCode problems, user information, and contest data.
 
-## 特点
+## Features
 
-- 🚀 快速访问 LeetCode API
-- 🔍 搜索问题、获取每日挑战、查看用户信息
-- 🏆 查询竞赛数据和排名
-- 🧩 完整支持 MCP 工具和资源
-- 📦 提供命令行接口和可编程 API
+- 🚀 Fast access to LeetCode API
+- 🔍 Search problems, retrieve daily challenges, and check user profiles
+- 🏆 Query contest data and rankings
+- 🧩 Full support for MCP tools and resources
+- 📦 Provides both CLI and programmable API
 
-## 安装
+## Installation
 
-### 全局安装
+### Global Installation
 
 ```bash
 npm install -g @mcpfun/mcp-server-leetcode
 ```
 
-然后可以直接使用命令行运行:
+Once installed, you can run it directly from the command line:
 
 ```bash
 mcp-server-leetcode
 ```
 
-### 本地安装
+### Local Installation
 
 ```bash
 npm install @mcpfun/mcp-server-leetcode
 ```
 
-## 使用方法
+## Usage
 
-### 与 Claude for Desktop 集成
+### Integration with Claude for Desktop
 
-在 Claude for Desktop 的 `claude_desktop_config.json` 文件中添加:
+Add the following to your Claude for Desktop `claude_desktop_config.json` file:
 
 ```json
 {
@@ -49,7 +49,7 @@ npm install @mcpfun/mcp-server-leetcode
 }
 ```
 
-对于本地开发:
+For local development:
 
 ```json
 {
@@ -62,65 +62,65 @@ npm install @mcpfun/mcp-server-leetcode
 }
 ```
 
-### 作为库使用
+### Use as a Library
 
 ```javascript
 import { LeetCodeService } from '@mcpfun/mcp-server-leetcode';
 
-// 初始化服务
+// Initialize the service
 const leetcodeService = new LeetCodeService();
 
-// 获取每日挑战
+// Get daily challenge
 const dailyChallenge = await leetcodeService.getDailyChallenge();
 
-// 搜索问题
+// Search problems
 const problems = await leetcodeService.searchProblems({
   difficulty: 'MEDIUM',
   tags: 'array+dynamic-programming'
 });
 ```
 
-## 可用工具
+## Available Tools
 
-### 问题相关工具
+### Problem-related Tools
 
-| 工具名 | 描述 | 参数 |
+| Tool Name | Description | Parameters |
 |--------|------|------|
-| `get-daily-challenge` | 获取每日挑战 | 无 |
-| `get-problem` | 获取指定问题详情 | `titleSlug` (字符串) |
-| `search-problems` | 搜索满足条件的问题 | `tags` (可选), `difficulty` (可选), `limit` (默认20), `skip` (默认0) |
+| `get-daily-challenge` | Get the daily challenge | None |
+| `get-problem` | Get details for a specific problem | `titleSlug` (string) |
+| `search-problems` | Search for problems based on criteria | `tags` (optional), `difficulty` (optional), `limit` (default 20), `skip` (default 0) |
 
-### 用户相关工具
+### User-related Tools
 
-| 工具名 | 描述 | 参数 |
+| Tool Name | Description | Parameters |
 |--------|------|------|
-| `get-user-profile` | 获取用户信息 | `username` (字符串) |
-| `get-user-submissions` | 获取用户提交历史 | `username` (字符串), `limit` (可选, 默认20) |
-| `get-user-contest-ranking` | 获取用户竞赛排名 | `username` (字符串) |
+| `get-user-profile` | Get user information | `username` (string) |
+| `get-user-submissions` | Get user submission history | `username` (string), `limit` (optional, default 20) |
+| `get-user-contest-ranking` | Get user contest rankings | `username` (string) |
 
-### 竞赛相关工具
+### Contest-related Tools
 
-| 工具名 | 描述 | 参数 |
+| Tool Name | Description | Parameters |
 |--------|------|------|
-| `get-contest-details` | 获取竞赛详情 | `contestSlug` (字符串) |
+| `get-contest-details` | Get contest details | `contestSlug` (string) |
 
-## 可用资源
+## Available Resources
 
-### 问题资源
+### Problem Resources
 
-- `leetcode://daily-challenge`: 每日挑战
-- `leetcode://problem/{titleSlug}`: 问题详情
-- `leetcode://problems{?tags,difficulty,limit,skip}`: 问题列表
+- `leetcode://daily-challenge`: Daily challenge
+- `leetcode://problem/{titleSlug}`: Problem details
+- `leetcode://problems{?tags,difficulty,limit,skip}`: Problem list
 
-### 用户资源
+### User Resources
 
-- `leetcode://user/{username}/profile`: 用户资料
-- `leetcode://user/{username}/submissions{?limit}`: 用户提交
-- `leetcode://user/{username}/contest-ranking`: 用户竞赛排名
+- `leetcode://user/{username}/profile`: User profile
+- `leetcode://user/{username}/submissions{?limit}`: User submissions
+- `leetcode://user/{username}/contest-ranking`: User contest ranking
 
-## 本地开发
+## Local Development
 
-克隆仓库并安装依赖:
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/doggybee/mcp-server-leetcode.git
@@ -128,27 +128,27 @@ cd mcp-server-leetcode
 npm install
 ```
 
-以开发模式运行:
+Run in development mode:
 
 ```bash
 npm run dev
 ```
 
-构建项目:
+Build the project:
 
 ```bash
 npm run build
 ```
 
-## 许可证
+## License
 
 MIT
 
-## 相关项目
+## Related Projects
 
-- [Model Context Protocol](https://modelcontextprotocol.io) - MCP 规范和文档
-- [Claude for Desktop](https://claude.ai/download) - 支持 MCP 的 AI 助手
+- [Model Context Protocol](https://modelcontextprotocol.io) - MCP specifications and documentation
+- [Claude for Desktop](https://claude.ai/download) - AI assistant with MCP support
 
-## 致谢
+## Acknowledgements
 
-- 这个项目受到 [alfa-leetcode-api](https://github.com/alfaarghya/alfa-leetcode-api) 的启发
+- This project was inspired by [alfa-leetcode-api](https://github.com/alfaarghya/alfa-leetcode-api)
