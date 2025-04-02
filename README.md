@@ -1,127 +1,154 @@
-# LeetCode MCP Server
+# MCP Server LeetCode
 
-A Model Context Protocol (MCP) server for LeetCode that interacts with the LeetCode API using GraphQL queries.
+[![npm version](https://img.shields.io/npm/v/@mcpfun/mcp-server-leetcode.svg)](https://www.npmjs.com/package/@mcpfun/mcp-server-leetcode)
+[![license](https://img.shields.io/npm/l/@mcpfun/mcp-server-leetcode.svg)](https://github.com/doggybee/mcp-server-leetcode/blob/main/LICENSE)
 
-## Features
+一个基于 Model Context Protocol (MCP) 的 LeetCode 服务器，让你的 AI 助手能够访问 LeetCode 的问题、用户信息和竞赛数据。
 
-- Access LeetCode problems, user information, and contest data
-- Structured access through MCP tools and resources
-- Comprehensive error handling
-- Modular architecture
+## 特点
 
-## Available Tools
+- 🚀 快速访问 LeetCode API
+- 🔍 搜索问题、获取每日挑战、查看用户信息
+- 🏆 查询竞赛数据和排名
+- 🧩 完整支持 MCP 工具和资源
+- 📦 提供命令行接口和可编程 API
 
-### Problem-related Tools
-- `get-daily-challenge`: Retrieve the daily challenge problem
-- `get-problem`: Get detailed information about a specific problem by its slug
-- `search-problems`: Search for problems based on difficulty, tags, and other criteria
+## 安装
 
-### User-related Tools
-- `get-user-profile`: Retrieve profile information for a LeetCode user
-- `get-user-submissions`: Get submission history for a user
-- `get-user-contest-ranking`: Retrieve contest ranking information for a user
+### 全局安装
 
-### Contest-related Tools
-- `get-contest-details`: Get information about a specific contest
-- `get-user-contest-ranking`: Retrieve a user's performance in contests
-
-## Resources
-
-### Problem Resources
-- `leetcode://daily-challenge`: Current daily challenge problem
-- `leetcode://problem/{titleSlug}`: Detailed information about a specific problem
-- `leetcode://problems{?tags,difficulty,limit,skip}`: List of problems matching query parameters
-
-### User Resources
-- `leetcode://user/{username}/profile`: User profile information
-- `leetcode://user/{username}/submissions{?limit}`: User's submission history
-- `leetcode://user/{username}/contest-ranking`: User's contest ranking data
-
-## Usage Examples
-
-### Problem Search
-
-```
-What are the top 5 easy array problems on LeetCode?
-```
-
-This will use the `search-problems` tool with parameters for difficulty level "EASY" and the "array" tag.
-
-### Problem Details
-
-```
-Show me details of the "two-sum" problem on LeetCode.
-```
-
-This will use the `get-problem` tool with the titleSlug "two-sum" to retrieve comprehensive information about the problem.
-
-### User Profile
-
-```
-What is the LeetCode profile information for user "username123"?
-```
-
-This will use the `get-user-profile` tool to retrieve statistics and profile data for the specified user.
-
-### Daily Challenge
-
-```
-What is today's LeetCode daily challenge?
-```
-
-This will use the `get-daily-challenge` tool to retrieve the current day's challenge problem.
-
-## Quick Start
-
-### Install Dependencies
 ```bash
-npm install
+npm install -g @mcpfun/mcp-server-leetcode
 ```
 
-### Build the Project
+然后可以直接使用命令行运行:
+
 ```bash
-npm run build
+mcp-server-leetcode
 ```
 
-### Run the Server
+### 本地安装
+
 ```bash
-npm start
+npm install @mcpfun/mcp-server-leetcode
 ```
 
-### Development Mode
-```bash
-npm run dev
+## 使用方法
+
+### 与 Claude for Desktop 集成
+
+在 Claude for Desktop 的 `claude_desktop_config.json` 文件中添加:
+
+```json
+{
+  "mcpServers": {
+    "leetcode": {
+      "command": "mcp-server-leetcode"
+    }
+  }
+}
 ```
 
-## Integration Guide
-
-Connect to this server using Claude for Desktop or other MCP-compatible clients.
-
-### Configuration Example (Claude for Desktop)
-
-Add the following to your Claude for Desktop `claude_desktop_config.json` file:
+对于本地开发:
 
 ```json
 {
   "mcpServers": {
     "leetcode": {
       "command": "node",
-      "args": ["/path/to/leetcode-mcp-server/dist/index.js"]
+      "args": ["/path/to/dist/index.js"]
     }
   }
 }
 ```
 
-## Clean Installation
+### 作为库使用
 
-For a fresh setup, you can use the provided script:
+```javascript
+import { LeetCodeService } from '@mcpfun/mcp-server-leetcode';
 
-```bash
-./clean-install.sh
+// 初始化服务
+const leetcodeService = new LeetCodeService();
+
+// 获取每日挑战
+const dailyChallenge = await leetcodeService.getDailyChallenge();
+
+// 搜索问题
+const problems = await leetcodeService.searchProblems({
+  difficulty: 'MEDIUM',
+  tags: 'array+dynamic-programming'
+});
 ```
 
-This script will remove existing node_modules and dist directories, install dependencies, and build the project.
+## 可用工具
 
-## References
-- Inspired by [alfa-leetcode-api](https://github.com/alfaarghya/alfa-leetcode-api)
-- Implemented using the [Model Context Protocol](https://modelcontextprotocol.io) specification
+### 问题相关工具
+
+| 工具名 | 描述 | 参数 |
+|--------|------|------|
+| `get-daily-challenge` | 获取每日挑战 | 无 |
+| `get-problem` | 获取指定问题详情 | `titleSlug` (字符串) |
+| `search-problems` | 搜索满足条件的问题 | `tags` (可选), `difficulty` (可选), `limit` (默认20), `skip` (默认0) |
+
+### 用户相关工具
+
+| 工具名 | 描述 | 参数 |
+|--------|------|------|
+| `get-user-profile` | 获取用户信息 | `username` (字符串) |
+| `get-user-submissions` | 获取用户提交历史 | `username` (字符串), `limit` (可选, 默认20) |
+| `get-user-contest-ranking` | 获取用户竞赛排名 | `username` (字符串) |
+
+### 竞赛相关工具
+
+| 工具名 | 描述 | 参数 |
+|--------|------|------|
+| `get-contest-details` | 获取竞赛详情 | `contestSlug` (字符串) |
+
+## 可用资源
+
+### 问题资源
+
+- `leetcode://daily-challenge`: 每日挑战
+- `leetcode://problem/{titleSlug}`: 问题详情
+- `leetcode://problems{?tags,difficulty,limit,skip}`: 问题列表
+
+### 用户资源
+
+- `leetcode://user/{username}/profile`: 用户资料
+- `leetcode://user/{username}/submissions{?limit}`: 用户提交
+- `leetcode://user/{username}/contest-ranking`: 用户竞赛排名
+
+## 本地开发
+
+克隆仓库并安装依赖:
+
+```bash
+git clone https://github.com/doggybee/mcp-server-leetcode.git
+cd mcp-server-leetcode
+npm install
+```
+
+以开发模式运行:
+
+```bash
+npm run dev
+```
+
+构建项目:
+
+```bash
+npm run build
+```
+
+## 许可证
+
+MIT
+
+## 相关项目
+
+- [Model Context Protocol](https://modelcontextprotocol.io) - MCP 规范和文档
+- [Claude for Desktop](https://claude.ai/download) - 支持 MCP 的 AI 助手
+
+## 致谢
+
+- 这个项目受到 [alfa-leetcode-api](https://github.com/alfaarghya/alfa-leetcode-api) 的启发

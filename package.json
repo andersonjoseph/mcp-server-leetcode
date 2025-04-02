@@ -1,15 +1,26 @@
 {
-  "name": "leetcode-mcp-server",
+  "name": "@mcpfun/mcp-server-leetcode",
   "version": "1.0.0",
   "description": "Model Context Protocol server for LeetCode using GraphQL",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "index.js",
+  "bin": {
+    "mcp-server-leetcode": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/index.js",
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "lint": "eslint src --ext .ts",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
@@ -24,10 +35,34 @@
     "@types/node": "^20.11.27",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
-    "eslint": "^9.0.0-alpha.2",
+    "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.4.3"
+  },
+  "keywords": [
+    "leetcode",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "tools",
+    "llm"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doggybee/mcp-server-leetcode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/doggybee/mcp-server-leetcode/issues"
+  },
+  "homepage": "https://github.com/doggybee/mcp-server-leetcode#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
