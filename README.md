@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@mcpfun/mcp-server-leetcode.svg)](https://www.npmjs.com/package/@mcpfun/mcp-server-leetcode)
 [![GitHub license](https://img.shields.io/github/license/doggybee/mcp-server-leetcode.svg)](https://github.com/doggybee/mcp-server-leetcode/blob/main/LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/doggybee/mcp-server-leetcode/releases)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/doggybee/mcp-server-leetcode/releases)
 
 A Model Context Protocol (MCP) server for LeetCode that enables AI assistants to access LeetCode problems, user information, and contest data.
 
