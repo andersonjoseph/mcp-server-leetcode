@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@mcpfun/mcp-server-leetcode.svg)](https://www.npmjs.com/package/@mcpfun/mcp-server-leetcode)
 [![GitHub license](https://img.shields.io/github/license/doggybee/mcp-server-leetcode.svg)](https://github.com/doggybee/mcp-server-leetcode/blob/main/LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/doggybee/mcp-server-leetcode/releases)
+[![smithery badge](https://smithery.ai/badge/@doggybee/mcp-server-leetcode)](https://smithery.ai/server/@doggybee/mcp-server-leetcode)
 
 A Model Context Protocol (MCP) server for LeetCode that enables AI assistants to access LeetCode problems, user information, and contest data.
 
@@ -15,6 +16,14 @@ A Model Context Protocol (MCP) server for LeetCode that enables AI assistants to
 - 📦 Provides both CLI and programmable API
 
 ## Installation
+
+### Installing via Smithery
+
+To install mcp-server-leetcode for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@doggybee/mcp-server-leetcode):
+
+```bash
+npx -y @smithery/cli install @doggybee/mcp-server-leetcode --client claude
+```
 
 ### Global Installation
 
