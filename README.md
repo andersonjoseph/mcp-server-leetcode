@@ -1,70 +1,105 @@
 # LeetCode MCP Server
 
-一个基于Model Context Protocol (MCP)的LeetCode服务器，使用GraphQL查询与LeetCode API交互。
+A Model Context Protocol (MCP) server for LeetCode that interacts with the LeetCode API using GraphQL queries.
 
-## 功能特点
+## Features
 
-- 支持查询LeetCode问题、用户信息和竞赛数据
-- 通过MCP工具和资源提供结构化访问
-- 完整的错误处理
-- 模块化架构
+- Access LeetCode problems, user information, and contest data
+- Structured access through MCP tools and resources
+- Comprehensive error handling
+- Modular architecture
 
-## 主要工具
+## Available Tools
 
-### 问题相关工具
-- `get-daily-challenge`: 获取每日挑战
-- `get-problem`: 根据slug获取问题详情
-- `search-problems`: 搜索满足条件的问题
+### Problem-related Tools
+- `get-daily-challenge`: Retrieve the daily challenge problem
+- `get-problem`: Get detailed information about a specific problem by its slug
+- `search-problems`: Search for problems based on difficulty, tags, and other criteria
 
-### 用户相关工具
-- `get-user-profile`: 获取用户资料
-- `get-user-submissions`: 获取用户提交记录
-- `get-user-contest-ranking`: 获取用户竞赛排名
+### User-related Tools
+- `get-user-profile`: Retrieve profile information for a LeetCode user
+- `get-user-submissions`: Get submission history for a user
+- `get-user-contest-ranking`: Retrieve contest ranking information for a user
 
-### 竞赛相关工具
-- `get-contest-details`: 获取竞赛详情
+### Contest-related Tools
+- `get-contest-details`: Get information about a specific contest
+- `get-user-contest-ranking`: Retrieve a user's performance in contests
 
-## 资源
+## Resources
 
-### 问题资源
-- `leetcode://daily-challenge`: 每日挑战
-- `leetcode://problem/{titleSlug}`: 问题详情
-- `leetcode://problems{?tags,difficulty,limit,skip}`: 问题列表
+### Problem Resources
+- `leetcode://daily-challenge`: Current daily challenge problem
+- `leetcode://problem/{titleSlug}`: Detailed information about a specific problem
+- `leetcode://problems{?tags,difficulty,limit,skip}`: List of problems matching query parameters
 
-### 用户资源
-- `leetcode://user/{username}/profile`: 用户资料
-- `leetcode://user/{username}/submissions{?limit}`: 用户提交
-- `leetcode://user/{username}/contest-ranking`: 用户竞赛排名
+### User Resources
+- `leetcode://user/{username}/profile`: User profile information
+- `leetcode://user/{username}/submissions{?limit}`: User's submission history
+- `leetcode://user/{username}/contest-ranking`: User's contest ranking data
 
-## 快速开始
+## Usage Examples
 
-### 安装依赖
+### Problem Search
+
+```
+What are the top 5 easy array problems on LeetCode?
+```
+
+This will use the `search-problems` tool with parameters for difficulty level "EASY" and the "array" tag.
+
+### Problem Details
+
+```
+Show me details of the "two-sum" problem on LeetCode.
+```
+
+This will use the `get-problem` tool with the titleSlug "two-sum" to retrieve comprehensive information about the problem.
+
+### User Profile
+
+```
+What is the LeetCode profile information for user "username123"?
+```
+
+This will use the `get-user-profile` tool to retrieve statistics and profile data for the specified user.
+
+### Daily Challenge
+
+```
+What is today's LeetCode daily challenge?
+```
+
+This will use the `get-daily-challenge` tool to retrieve the current day's challenge problem.
+
+## Quick Start
+
+### Install Dependencies
 ```bash
 npm install
 ```
 
-### 构建项目
+### Build the Project
 ```bash
 npm run build
 ```
 
-### 运行服务器
+### Run the Server
 ```bash
 npm start
 ```
 
-### 开发模式
+### Development Mode
 ```bash
 npm run dev
 ```
 
-## 使用说明
+## Integration Guide
 
-使用Claude for Desktop或其他MCP兼容的客户端连接到此服务器。
+Connect to this server using Claude for Desktop or other MCP-compatible clients.
 
-### 配置示例（Claude for Desktop）
+### Configuration Example (Claude for Desktop)
 
-在Claude for Desktop的`claude_desktop_config.json`文件中添加：
+Add the following to your Claude for Desktop `claude_desktop_config.json` file:
 
 ```json
 {
@@ -77,6 +112,16 @@ npm run dev
 }
 ```
 
-## 参考
-- 这个项目受到[alfa-leetcode-api](https://github.com/alfaarghya/alfa-leetcode-api)的启发
-- 使用[Model Context Protocol](https://modelcontextprotocol.io)规范实现
+## Clean Installation
+
+For a fresh setup, you can use the provided script:
+
+```bash
+./clean-install.sh
+```
+
+This script will remove existing node_modules and dist directories, install dependencies, and build the project.
+
+## References
+- Inspired by [alfa-leetcode-api](https://github.com/alfaarghya/alfa-leetcode-api)
+- Implemented using the [Model Context Protocol](https://modelcontextprotocol.io) specification
