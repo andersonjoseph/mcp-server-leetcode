@@ -6,7 +6,8 @@ import {
   problemDetailsQuery,
   searchProblemsQuery,
   contestDetailsQuery,
-  userContestRankingQuery
+  userContestRankingQuery,
+  randomProblemQuery
 } from "../graphql/queries.js";
 
 export class LeetCodeService {
@@ -78,6 +79,19 @@ export class LeetCodeService {
    */
   async fetchProblem(titleSlug: string) {
     return this.executeQuery(problemDetailsQuery, { titleSlug });
+  }
+
+  /**
+   * Fetch a random problem based on the given criteria
+   */
+  async fetchRandomProblem(tags?: string, difficulty?: string) {
+    return this.executeQuery(randomProblemQuery, {
+      categorySlug: "",
+      filters: {
+	tags: tags ? tags.split("+") : [],
+	difficulty: difficulty || null,
+      }
+    });
   }
 
   /**

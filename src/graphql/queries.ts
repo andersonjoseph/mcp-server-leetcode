@@ -221,3 +221,56 @@ export const userContestRankingQuery = `
     }
   }
 `;
+
+export const randomProblemQuery = `
+query randomQuestion($categorySlug: String, $filters: QuestionListFilterInput) {
+  randomQuestion(categorySlug: $categorySlug, filters: $filters) {
+      questionId
+      questionFrontendId
+      boundTopicId
+      title
+      titleSlug
+      content
+      translatedTitle
+      difficulty
+      likes
+      dislikes
+      isLiked
+      similarQuestions
+      exampleTestcases
+      contributors {
+        username
+        profileUrl
+        avatarUrl
+      }
+      topicTags {
+        name
+        slug
+      }
+      companyTagStats
+      codeSnippets {
+        lang
+        langSlug
+        code
+      }
+      stats
+      hints
+      solution {
+        id
+        canSeeDetail
+        paidOnly
+        hasVideoSolution
+      }
+      status
+      sampleTestCase
+      metaData
+      judgerAvailable
+      judgeType
+      mysqlSchemas
+      enableRunCode
+      enableTestMode
+      enableDebugger
+      envInfo
+  }
+}
+`;

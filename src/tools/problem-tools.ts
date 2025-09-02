@@ -78,4 +78,30 @@ export function registerProblemTools(server: McpServer, leetcodeService: LeetCod
       }
     }
   );
+
+  // Random Problem
+  server.tool(
+    "random-problem",
+    {
+      tags: z.string().optional().describe("Tags to filter by, separated by '+' (e.g., 'array+dynamic-programming')"),
+      difficulty: z.enum(["EASY", "MEDIUM", "HARD"]).optional().describe("Difficulty level")
+    },
+    async ({tags, difficulty}) => {
+      try {
+        const data = await leetcodeService.fetchRandomProblem(tags, difficulty);
+        return {
+          content: [{ 
+            type: "text", 
+            text: JSON.stringify(data, null, 2)
+          }]
+        };
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        return {
+          content: [{ type: "text", text: `Error: ${errorMessage}` }],
+          isError: true
+        };
+      }
+    }
+  );
 }
